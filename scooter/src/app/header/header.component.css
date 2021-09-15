@@ -1,5 +1,33 @@
 #wapenlogo{
+  position: absolute;
+  top: 6%;
+  left: 1%;
+  width: 10%;
+  border: 2px solid black;
 }
 #fietsbordlogo{
+  position: absolute;
+  top: 6%;
+  right: 1%;
+  width: 5%;
+  border: 2px solid black;
+}
 
+#header{
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  left: 0%;
+  right: 0%;
+  height: auto;
+  background-color: bisque;
+}
+
+#titel{
+  text-align: center;
+}
+
+#subtitel{
+  text-align: right;
+  margin-right: 20%;
 }
