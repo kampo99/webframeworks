@@ -1,0 +1,23 @@
+#navbarHeader{
+  display: block;
+  /*position: absolute;*/
+  top: 0%;
+  width: 100%;
+  left: 0%;
+  right: 0%;
+  height: 12%;
+  background-color: bisque;
+}
+
+#titel{
+  text-align: center;
+}
+
+#subtitel{
+  text-align: right;
+  margin-right: 20%;
+}
+.form-select{
+  background-color: bisque;
+  border: none;
+}

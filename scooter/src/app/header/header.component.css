@@ -1,21 +1,22 @@
 #wapenlogo{
-  position: absolute;
+  /*position: absolute;*/
   top: 6%;
   left: 1%;
   width: 10%;
-  border: 2px solid black;
+  /*border: 2px solid black;*/
 }
 #fietsbordlogo{
-  position: absolute;
+  /*position: absolute;*/
   top: 6%;
   right: 1%;
   width: 5%;
-  border: 2px solid black;
+  float: right;
+  /*border: 2px solid black;*/
 }
 
 #header{
   display: block;
-  position: absolute;
+  /*position: absolute;*/
   top: 0%;
   width: 100%;
   left: 0%;
