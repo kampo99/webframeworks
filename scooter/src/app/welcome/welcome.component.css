@@ -1,17 +1,21 @@
-#content{
-  position: absolute;
-  top: 20%;
-}
-
-#leftcontent{
-
-}
-
-#centercontent{
-
+#leftcontent {
+  width: 20%;
+  left: 0%;
 }
 
 #rightcontent{
+  width: 20%;
+  right: 0%;
+}
 
+#centercontent{
+  width: available;
+  left: 20%;
+  right: 20%;
+}
 
+.content{
+  position: absolute;
+  top: 12%;
+  border: 3px solid black;
 }
