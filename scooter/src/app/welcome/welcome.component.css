@@ -1,21 +1,13 @@
-#leftcontent {
-  width: 20%;
-  left: 0%;
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
-#rightcontent{
-  width: 20%;
-  right: 0%;
-}
-
-#centercontent{
-  width: available;
-  left: 20%;
-  right: 20%;
-}
-
-.content{
-  position: absolute;
-  top: 12%;
-  border: 3px solid black;
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
 }
