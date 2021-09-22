@@ -8,19 +8,25 @@ import {Scooter} from 'src/app/models/scooter';
 })
 export class Overview31Component implements OnInit {
   scooters: Scooter[] = [];
+  nextid: number = 30000;
 
   constructor() {
   }
 
   ngOnInit() {
     this.scooters = [];
-    let nextid = 30000;
+
     for (let i = 0; i < 8; i++) {
       this.scooters.push(
-        Scooter.createSampleScooter(nextid)
+        Scooter.createSampleScooter(this.nextid)
       )
-      nextid += 3;
+      this.nextid += 3;
     }
+  }
+
+  onNewScooter(){
+    this.scooters.push(Scooter.createSampleScooter(this.nextid))
+    this.nextid += 3;
   }
 
 

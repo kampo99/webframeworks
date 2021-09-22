@@ -3,17 +3,8 @@
     <a class="btn">
       Home
     </a>
-    <a class="btn dropdown-toggle" (click)="switchScooterList()" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <select [(ngModel)]="">
-        <option value="scooters">Scooters</option>
-        <option value="overview">Overview</option>
-      </select>
-
-      <div class="parent-component" [ngSwitch]="userType">
-        <app-staff *ngSwitchCase="userType==='scooters'"></app-staff>
-        <app-student *ngSwitchCase="userType==='overview'"></app-student>
-      </div>
-
+    <a class="btn dropdown-toggle"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Scooters
     </a>
     <a class="btn ">
       <select class="form-select" aria-label="Default select example">
