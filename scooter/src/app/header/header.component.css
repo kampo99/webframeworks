@@ -2,14 +2,14 @@
   /*position: absolute;*/
   top: 6%;
   left: 1%;
-  width: 10%;
+  width: 25%;
   /*border: 2px solid black;*/
 }
 #fietsbordlogo{
   /*position: absolute;*/
   top: 6%;
   right: 1%;
-  width: 5%;
+  width: 12%;
   float: right;
   /*border: 2px solid black;*/
 }
@@ -30,13 +30,12 @@
 }
 
 #subtitel{
-  text-align: right;
-  margin-right: 20%;
+  text-align: center;
 }
 
 #date{
-  text-align: left;
-  margin-left: 20%;
+  text-align: center;
+
 }
 
 
