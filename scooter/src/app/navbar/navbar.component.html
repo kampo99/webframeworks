@@ -3,8 +3,17 @@
     <a class="btn">
       Home
     </a>
-    <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Scooters
+    <a class="btn dropdown-toggle" (click)="switchScooterList()" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <select [(ngModel)]="">
+        <option value="scooters">Scooters</option>
+        <option value="overview">Overview</option>
+      </select>
+
+      <div class="parent-component" [ngSwitch]="userType">
+        <app-staff *ngSwitchCase="userType==='scooters'"></app-staff>
+        <app-student *ngSwitchCase="userType==='overview'"></app-student>
+      </div>
+
     </a>
     <a class="btn ">
       <select class="form-select" aria-label="Default select example">
@@ -13,6 +22,12 @@
         <option value="3">last month</option>
       </select>
     </a>
+    <a class="rightnav btn">
+      Log in
+    </a>
+    <a class="rightnav btn">
+      Sign up
+    </a>
 
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -20,8 +35,6 @@
       <a class="dropdown-item" href="#">Another action</a>
       <a class="dropdown-item" href="#">Something else here</a>
     </div>
-  </div>
-  <div class="row">
   </div>
 </div>
 

@@ -7,7 +7,7 @@ import {Scooter} from 'src/app/models/scooter';
   styleUrls: ['./overview31.component.css']
 })
 export class Overview31Component implements OnInit {
-  scooters: Scooter[];
+  scooters: Scooter[] = [];
 
   constructor() {
   }
