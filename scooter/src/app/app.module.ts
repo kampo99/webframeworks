@@ -7,13 +7,15 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {FormsModule} from "@angular/forms";
+import { Overview31Component } from './scooters/overview31/overview31.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    Overview31Component
   ],
   imports: [
     BrowserModule,
