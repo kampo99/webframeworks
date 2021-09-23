@@ -19,19 +19,29 @@ export class Scooter {
   public static createSampleScooter(pId = 0): Scooter {
     let id = pId;
     let tag = this.randomString(8);
-    let status = 'INUSE';
-    let gps = this.randomString(4);
+    let status = this.getEnum();
+    let gps = this.gpsLocation();
     let mileage = this.getRandomInt(0, 10000);
     let batteryCharge = this.getRandomInt(5,100);
 
 
-    // enum status{
-    //   IDLE = 'IDLE',
-    //   INUSE = 'INUSE',
-    //   MAINTENANCE = 'MAINTENANCE'
-    // }
     let scooter = new Scooter(id, tag, status, gps, mileage, batteryCharge);
     return scooter;
+  }
+
+
+  private static getEnum(){
+    let random = this.getRandomInt(1,3);
+    if (random === 1){
+      return ScooterStatus.IDLE;
+    }
+    if (random === 2){
+      return ScooterStatus.INUSE;
+    }
+    if (random === 3){
+      return ScooterStatus.MAINTENANCE;
+    }
+    return '';
   }
 
   private static getRandomInt(min: number, max: number) {
@@ -48,4 +58,21 @@ export class Scooter {
     }
     return result;
   }
+
+  private static gpsLocation(){
+    let latitude = this.getRandomInt(52000000, 53000000)/1000000;
+    let longtitude = this.getRandomInt(4000000, 5000000)/1000000;
+    let gps = latitude + "N, " + longtitude + "E";
+    return gps;
+  }
+
+
 }
+
+export enum ScooterStatus{
+  IDLE = 'IDLE',
+    INUSE = 'INUSE',
+    MAINTENANCE = 'MAINTENANCE'
+}
+
+
