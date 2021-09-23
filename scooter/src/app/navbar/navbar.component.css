@@ -24,3 +24,8 @@
 .rightnav{
   float: right;
 }
+@media (max-width: 975px){
+  .rightnav{
+    float: none;
+  }
+}
