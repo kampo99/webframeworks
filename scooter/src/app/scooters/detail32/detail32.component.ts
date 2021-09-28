@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Scooter} from "../../models/scooter";
 
 @Component({
   selector: 'app-detail32',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Detail32Component implements OnInit {
 
+  @Input('inputElement')
+  element: Scooter;
+
+  @Output()
+  scooterUpdated = new EventEmitter<Scooter>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onUpdateScooter(){
+    this.scooterUpdated.emit(this.element)
+  }
 }

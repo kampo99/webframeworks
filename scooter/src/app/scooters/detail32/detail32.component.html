@@ -1,1 +1,46 @@
-<p>Select a scooter from the left page!</p>
+<div *ngIf="element != null; else noneSelected">
+  <div class="container">
+    <div class="col">
+
+      <div class="row">
+        <label for="tagInput">Tag</label>
+        <input type="text" class="form-control" id="tagInput" placeholder="Tag" [ngModel]="element.tag">
+      </div>
+
+      <div class="row">
+        <label for="statusInput">Status</label>
+        <select name="status" id="statusInput">
+          <option value="IDLE">IDLE</option>
+          <option value="INUSE">INUSE</option>
+          <option value="MAINTENANCE">MAINTENANCE</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="gpsInput">GPS location</label>
+        <input type="text" class="form-control" id="gpsInput" placeholder="GPS location" [ngModel]="element.gpsLocation">
+      </div>
+
+      <div class="row">
+        <label for="mileageInput">Mileage (in km)</label>
+        <input type="text" class="form-control" id="mileageInput" placeholder="Mileage" [ngModel]="element.mileage">
+      </div>
+
+      <div class="row">
+        <label for="chargeInput">Battery charge (in %)</label>
+        <input type="text" class="form-control" id="chargeInput" placeholder="Charge" [ngModel]="element.batteryCharge">
+      </div>
+
+      <br>
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-primary" (click)="onUpdateScooter()">Update</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<ng-template #noneSelected>
+  <p>Select a scooter from the left page!</p>
+</ng-template>
+

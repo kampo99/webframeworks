@@ -9,7 +9,7 @@
           <th>Status</th>
         </tr>
         </thead>
-        <tbody *ngFor="let scooter of scooters">
+        <tbody *ngFor="let scooter of scooters" (click)="onSelect(scooter)" [ngClass]="{ 'table-active' : selectedScooter != null && scooter.id === selectedScooter.id }">
         <tr>
           <td>{{ scooter.tag}}</td>
           <td>{{ scooter.status}}</td>
@@ -19,7 +19,7 @@
       <button id="newScooter" class="btn btn-primary" (click)="onNewScooter()">Add Scooter</button>
     </div>
     <div class="col-md-5">
-      <app-detail32></app-detail32>
+      <app-detail32 [inputElement]="selectedScooter" (scooterUpdated)="onScooterUpdated($event)"></app-detail32>
     </div>
   </div>
 </div>

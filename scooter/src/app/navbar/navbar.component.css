@@ -21,11 +21,11 @@
   background-color: bisque;
   border: none;
 }
-.rightnav{
-  float: right;
-}
 @media (max-width: 975px){
-  .rightnav{
-    float: none;
-  }
+}
+
+#navRight{
+  position: absolute;
+  display: block;
+  right: 4%;
 }

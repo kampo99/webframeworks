@@ -66,6 +66,10 @@ export class Scooter {
     return gps;
   }
 
+  static trueCopy(scooter: Scooter): Scooter{
+    return Object.assign(new Scooter(0,'','','',0,0), scooter)
+  }
+
 
 }
 
