@@ -1,39 +1,45 @@
 <div id="navbarHeader" class="container-fluid pt-2">
-  <div class="dropdown show pb-2">
-    <a class="btn" href="">
-      Home
-    </a>
-    <a class="btn dropdown-toggle" href="scooters/overview31"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Scooters
-    </a>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand pt-0" routerLink="/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <a class="btn ">
-    <select class="form-select" aria-label="Default select example">
-      <option value="1" selected>Scooters</option>
-      <option value="2">Scooter overview</option>
-    </select>
-  </a>
-    <a class="btn ">
-      <select class="form-select" aria-label="Default select example">
-        <option value="1" selected>Amsterdam</option>
-        <option value="2">history</option>
-        <option value="3">last month</option>
-      </select>
-    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" routerLinkActive="active">
 
-    <a class="rightnav btn">
-      Log in
-    </a>
-    <a class="rightnav btn">
-      Sign up
-    </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Scooters
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="scooters/overview31">Scooters Overview</a>
+            <a class="dropdown-item" routerLink="scooters/overview32">overview32</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Amsterdam
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/router-param/ACME">history</a>
+            <a class="dropdown-item" routerLink="/query-param">last month</a>
+          </div>
+        </li>
 
-
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
+      </ul>
+      <ul class="nav ">
+        <li>
+          <a class="rightnav btn">
+            Log in
+          </a>
+          <a class="rightnav btn">
+            Sign up
+          </a>
+        </li>
+      </ul>
     </div>
-  </div>
+  </nav>
 </div>
+
 

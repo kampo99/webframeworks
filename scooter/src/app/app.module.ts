@@ -8,6 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {FormsModule} from "@angular/forms";
 import { Overview31Component } from './scooters/overview31/overview31.component';
+import { Overview32Component } from './scooters/overview32/overview32.component';
+import { Detail32Component } from './scooters/detail32/detail32.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { Overview31Component } from './scooters/overview31/overview31.component'
     WelcomeComponent,
     HeaderComponent,
     NavbarComponent,
-    Overview31Component
+    Overview31Component,
+    Overview32Component,
+    Detail32Component
   ],
   imports: [
     BrowserModule,
