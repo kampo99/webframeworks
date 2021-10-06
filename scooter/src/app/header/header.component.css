@@ -37,6 +37,13 @@
   text-align: center;
 
 }
-
+@media (max-width: 975px){
+  #wapenlogo{
+    width: 75%;
+  }
+  #fietsbordlogo{
+    width: 40%;
+  }
+}
 
 

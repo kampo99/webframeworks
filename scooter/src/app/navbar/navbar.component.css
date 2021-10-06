@@ -21,11 +21,16 @@
   background-color: bisque;
   border: none;
 }
-@media (max-width: 975px){
+@media (min-width: 976px){
+  #navRight1{
+    position: absolute;
+    display: block;
+    right: 4%;
+  }
+  #navRight2{
+    position: absolute;
+    display: block;
+    right: 0%;
+  }
 }
 
-#navRight{
-  position: absolute;
-  display: block;
-  right: 4%;
-}
