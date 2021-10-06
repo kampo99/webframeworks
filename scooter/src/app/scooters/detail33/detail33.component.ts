@@ -1,12 +1,13 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ScooterService} from "../../service/scooter.service";
 import {Scooter} from "../../models/scooter";
 
 @Component({
-  selector: 'app-detail32',
-  templateUrl: './detail32.component.html',
-  styleUrls: ['./detail32.component.css']
+  selector: 'app-detail33',
+  templateUrl: './detail33.component.html',
+  styleUrls: ['./detail33.component.css']
 })
-export class Detail32Component implements OnInit {
+export class Detail33Component implements OnInit {
   @Input('inputScooter')
   inputScooter: Scooter;
 
@@ -22,11 +23,5 @@ export class Detail32Component implements OnInit {
     this.deletedScooter.emit(this.inputScooter);
     this.inputScooter = null;
   }
-
-  // onSave(){
-  //   console.log("Changed scooter" + this.element)
-  //   this.savedScooter.emit(this.element);
-  //   console.log("Saving Scooter" , this.savedScooter);
-  // }
 
 }

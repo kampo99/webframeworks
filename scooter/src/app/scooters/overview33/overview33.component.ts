@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {ScooterService} from "../../service/scooter.service";
 import {Scooter} from "../../models/scooter";
 
-
 @Component({
-  selector: 'app-overview32',
-  templateUrl: './overview32.component.html',
-  styleUrls: ['./overview32.component.css'],
+  selector: 'app-overview33',
+  templateUrl: './overview33.component.html',
+  styleUrls: ['./overview33.component.css']
 })
-export class Overview32Component implements OnInit {
+export class Overview33Component implements OnInit {
   scooters: Scooter[] = [];
   nextid: number = 30000;
   selectedScooter: Scooter;
@@ -52,19 +52,4 @@ export class Overview32Component implements OnInit {
     }
   }
 
-  // onScooterSaved(scooter: Scooter){
-  //   // this.onSelect(scooter);
-  //   this.save(scooter);
-  //   console.log("recieved a scooter as output ",scooter)
-  // }
-
-  // save(scooter: Scooter){
-  //   console.log("In save functon" + scooter);
-  //   for (let i = 0; i < this.scooters.length; i++) {
-  //     if (this.scooters[i].id == scooter.id){
-  //       this.scooters[i] = scooter;
-  //       break;
-  //     }
-  //   }
-  // }
 }

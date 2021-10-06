@@ -6,8 +6,7 @@ export class Scooter {
   public mileage: number;
   public batteryCharge: number;
 
-
-  constructor(id: number, tag: string, status: string, gpsLocation: string, mileage: number, batteryCharge: number) {
+  constructor(id: number =0, tag: string = "", status: string = "", gpsLocation: string = "", mileage: number = 0, batteryCharge: number = 0) {
     this.id = id;
     this.tag = tag;
     this.status = status;
@@ -66,9 +65,7 @@ export class Scooter {
     return gps;
   }
 
-  static trueCopy(scooter: Scooter): Scooter{
-    return Object.assign(new Scooter(0,'','','',0,0), scooter)
-  }
+
 
 
 }
