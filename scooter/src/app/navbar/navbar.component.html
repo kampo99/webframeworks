@@ -1,6 +1,6 @@
 <div id="navbarHeader" class="container-fluid pt-2">
   <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand pt-0" routerLink="/">Home</a>
+    <a class="navbar-brand pt-0" routerLink="/home">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,7 +9,7 @@
       <ul class="navbar-nav mr-auto" routerLinkActive="active">
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Scooters
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,13 +27,13 @@
           </div>
         </li>
         <li id="navRight1" class="nav-item">
-            <a class="nav-link" href="#">
-              Log in
+            <a class="nav-link" routerLink="/sign-up">
+              Sign up
             </a>
         </li>
         <li id="navRight2" class="nav-item">
-          <a class="nav-link" href="#">
-            Sign up
+          <a class="nav-link" routerLink="/sign-in">
+            Log in
           </a>
         </li>
       </ul>
