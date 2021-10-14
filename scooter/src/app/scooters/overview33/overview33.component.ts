@@ -8,22 +8,16 @@ import {Scooter} from "../../models/scooter";
   styleUrls: ['./overview33.component.css']
 })
 export class Overview33Component implements OnInit {
-  scooters: Scooter[] = [];
-  nextid: number = 30000;
   selectedScooter: Scooter;
 
-  constructor() {
+  constructor(private scooterService: ScooterService) {
   }
 
   ngOnInit(): void {
-    this.scooters = [];
+  }
 
-    for (let i = 0; i < 8; i++) {
-      this.scooters.push(
-        Scooter.createSampleScooter(this.nextid)
-      )
-      this.nextid += 3;
-    }
+  get scooters(): Scooter[]{
+    return this.scooterService.findAll();
   }
 
   OnSelect(scooter: Scooter): void {
@@ -37,19 +31,13 @@ export class Overview33Component implements OnInit {
   }
 
   onNewScooter() {
-    this.selectedScooter = Scooter.createSampleScooter(this.nextid);
+    this.selectedScooter = Scooter.createSampleScooter(this.scooterService.getNextId());
     this.scooters.push(this.selectedScooter);
-    this.nextid += 3;
   }
 
-  onDelete(scooter: Scooter): void {
-    for (let i = 0; i < this.scooters.length; i++) {
-      if (this.scooters[i].id == scooter.id) {
-        const index = this.scooters.indexOf(this.scooters[i]);
-        this.scooters.splice(index, 1);
-        break;
-      }
-    }
+  unSelect(){
+    this.selectedScooter = null;
   }
+
 
 }

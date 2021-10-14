@@ -13,7 +13,7 @@ export class ScooterService {
   constructor() {
     for (let i = 0; i < 8; i++) {
       this.scooters.push(
-        Scooter.createSampleScooter(this.nextId())
+        Scooter.createSampleScooter(this.getNextId())
       )
     }
   }
@@ -44,18 +44,17 @@ export class ScooterService {
   deleteById(id: number){
     for (let i = 0; i < this.scooters.length; i++) {
       if (this.scooters[i].id == id){
-        this.scooters[i] = null;
+        const index = this.scooters.indexOf(this.scooters[i])
+        this.scooters.splice(index, 1);
+        break;
       }
     }
   }
 
-  private nextId(): number{
+    getNextId(): number{
     this.nextid += 3;
     return this.nextid;
   }
 
-  getScooters(): Scooter[]{
-    return this.scooters;
-  }
 
 }

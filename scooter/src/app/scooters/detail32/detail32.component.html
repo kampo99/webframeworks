@@ -15,12 +15,12 @@
 
       <div class="row">
         <label for="tagInput">Tag</label>
-        <input type="text" class="form-control" id="tagInput" placeholder="Tag" [ngModel]="inputScooter.tag">
+        <input type="text" class="form-control" id="tagInput" placeholder="Tag" [(ngModel)]="inputScooter.tag">
       </div>
 
       <div class="row">
         <label for="statusInput">Status</label>
-        <select name="status" id="statusInput" [ngModel]="inputScooter.status">
+        <select name="status" id="statusInput" [(ngModel)]="inputScooter.status">
           <option value="IDLE">IDLE</option>
           <option value="INUSE">INUSE</option>
           <option value="MAINTENANCE">MAINTENANCE</option>
@@ -30,19 +30,19 @@
       <div class="row">
         <label for="gpsInput">GPS location</label>
         <input type="text" class="form-control" id="gpsInput" placeholder="GPS location"
-               [ngModel]="inputScooter.gpsLocation">
+               [(ngModel)]="inputScooter.gpsLocation">
       </div>
 
       <div class="row">
         <label for="mileageInput">Mileage (in km)</label>
         <input type="number" class="form-control" id="mileageInput" placeholder="Mileage"
-               [ngModel]="inputScooter.mileage">
+               [(ngModel)]="inputScooter.mileage">
       </div>
 
       <div class="row">
         <label for="chargeInput">Battery charge (in %)</label>
         <input type="number" class="form-control" id="chargeInput" placeholder="Charge"
-               [ngModel]="inputScooter.batteryCharge">
+               [(ngModel)]="inputScooter.batteryCharge">
       </div>
 
       <div class="col-sm-12">

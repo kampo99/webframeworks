@@ -7,7 +7,7 @@ import {Scooter} from "../../models/scooter";
   styleUrls: ['./detail32.component.css']
 })
 export class Detail32Component implements OnInit {
-  @Input('inputScooter')
+  @Input()
   inputScooter: Scooter;
 
   @Output()
