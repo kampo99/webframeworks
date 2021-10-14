@@ -11,6 +11,7 @@ import { Overview32Component } from './scooters/overview32/overview32.component'
 import { Detail32Component } from './scooters/detail32/detail32.component';
 import { Overview33Component } from './scooters/overview33/overview33.component';
 import { Detail33Component } from './scooters/detail33/detail33.component';
+import {UnknownRouteComponent } from './unknown-route/unknown-route.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { Detail33Component } from './scooters/detail33/detail33.component';
     Overview32Component,
     Detail32Component,
     Overview33Component,
-    Detail33Component
+    Detail33Component,
+    UnknownRouteComponent
   ],
   imports: [
     BrowserModule,
