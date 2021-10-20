@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Scooter} from "../../models/scooter";
 import {ScooterService} from "../../service/scooter.service";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-overview34',
@@ -11,7 +12,7 @@ export class Overview34Component implements OnInit {
 
   selectedScooter: Scooter;
 
-  constructor(private scooterService: ScooterService) {
+  constructor(private scooterService: ScooterService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -22,13 +23,27 @@ export class Overview34Component implements OnInit {
   }
 
   OnSelect(scooter: Scooter): void {
-    if (this.selectedScooter != null && this.selectedScooter.id === scooter.id) {
+    if (this.selectedScooter != null && this.selectedScooter.id === scooter.id){
       this.selectedScooter = null;
-      console.log(this.selectedScooter);
+      this.router.navigate(['/overview34']);
     } else {
       this.selectedScooter = Object.assign(new Scooter(), scooter);
-      console.log(this.selectedScooter);
+      this.router.navigate([scooter.id], {relativeTo: this.activatedRoute})
+      console.log("text")
     }
+
+
+
+
+
+
+    // if (this.selectedScooter != null && this.selectedScooter.id === scooter.id) {
+    //   this.selectedScooter = null;
+    //   console.log(this.selectedScooter);
+    // } else {
+    //   this.selectedScooter = Object.assign(new Scooter(), scooter);
+    //   console.log(this.selectedScooter);
+    // }
   }
 
   onNewScooter() {
@@ -36,8 +51,8 @@ export class Overview34Component implements OnInit {
     this.scooters.push(this.selectedScooter);
   }
 
-  unSelect(){
-    this.selectedScooter = null;
+  marker(id: number){
+    return this.selectedScooter.id = id;
   }
 
 }

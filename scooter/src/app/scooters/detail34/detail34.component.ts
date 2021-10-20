@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Scooter} from "../../models/scooter";
 import {ScooterService} from "../../service/scooter.service";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'app-detail34',
@@ -8,16 +9,13 @@ import {ScooterService} from "../../service/scooter.service";
   styleUrls: ['./detail34.component.css']
 })
 export class Detail34Component implements OnInit {
-  @Input()
-  inputScooter: Scooter;
 
-  @Output()
-  unSelectScooter = new EventEmitter<Scooter>();
+  inputScooter: Scooter;
 
   backup: Scooter;
 
 
-  constructor(private scooterService: ScooterService) {
+  constructor(private scooterService: ScooterService, private route: ActivatedRoute) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -26,6 +24,12 @@ export class Detail34Component implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.inputScooter = this.scooterService.findById(params['id']);
+        this.backup = Scooter.copyConstructor(this.inputScooter);
+      }
+    )
   }
 
   disabled(): boolean{
@@ -49,7 +53,6 @@ export class Detail34Component implements OnInit {
     this.scooterService.save(this.backup);
     console.log(this.inputScooter)
     this.inputScooter = null;
-    this.unSelectScooter.emit();
   }
 
   onReset(){
@@ -78,7 +81,7 @@ export class Detail34Component implements OnInit {
   onCancel(){
     if (confirm("are you sure to discard unsaved changes ?")){
       this.inputScooter = null;
-      this.unSelectScooter.emit();
+
     }
   }
 
