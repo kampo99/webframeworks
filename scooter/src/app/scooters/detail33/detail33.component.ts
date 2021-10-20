@@ -54,9 +54,6 @@ export class Detail33Component implements OnInit, OnChanges {
   }
 
   onReset(){
-    if (this.backup != this.inputScooter){
-    let ele = document.getElementById('reset')
-    }
     if (confirm("are you sure to discard unsaved changes ?")){
       this.backup.tag = this.inputScooter.tag;
       this.backup.status = this.inputScooter.status;

@@ -1,21 +1,20 @@
-import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Scooter} from "../../models/scooter";
 import {ScooterService} from "../../service/scooter.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-detail34',
   templateUrl: './detail34.component.html',
   styleUrls: ['./detail34.component.css']
 })
-export class Detail34Component implements OnInit {
+export class Detail34Component implements OnInit, OnChanges {
 
   inputScooter: Scooter;
-
   backup: Scooter;
 
 
-  constructor(private scooterService: ScooterService, private route: ActivatedRoute) {
+  constructor(private scooterService: ScooterService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,12 +52,10 @@ export class Detail34Component implements OnInit {
     this.scooterService.save(this.backup);
     console.log(this.inputScooter)
     this.inputScooter = null;
+    this.router.navigate(['scooters/overview34/O']);
   }
 
   onReset(){
-    if (this.backup != this.inputScooter){
-      let ele = document.getElementById('reset')
-    }
     if (confirm("are you sure to discard unsaved changes ?")){
       this.backup.tag = this.inputScooter.tag;
       this.backup.status = this.inputScooter.status;
@@ -81,7 +78,7 @@ export class Detail34Component implements OnInit {
   onCancel(){
     if (confirm("are you sure to discard unsaved changes ?")){
       this.inputScooter = null;
-
+      this.router.navigate(['scooters/overview34/O']);
     }
   }
 
