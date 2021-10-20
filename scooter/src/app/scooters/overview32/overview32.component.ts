@@ -31,7 +31,7 @@ export class Overview32Component implements OnInit {
       this.selectedScooter = null;
       console.log(this.selectedScooter);
     } else {
-      this.selectedScooter = Object.assign(new Scooter(), scooter);
+      this.selectedScooter =  scooter;
       console.log(this.selectedScooter);
     }
   }
