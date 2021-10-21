@@ -44,6 +44,7 @@ export class Detail34Component implements OnInit, OnChanges {
     if (confirm("are you sure to discard unsaved changes ?")){
       this.scooterService.deleteById(this.inputScooter.id)
       this.inputScooter = null;
+      this.router.navigate(['scooters/overview34/O']);
     }
 
   }

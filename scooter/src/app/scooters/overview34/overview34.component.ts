@@ -3,6 +3,7 @@ import {Scooter} from "../../models/scooter";
 import {ScooterService} from "../../service/scooter.service";
 import {ActivatedRoute, NavigationEnd, Params, Router} from "@angular/router";
 import * as url from "url";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-overview34',
@@ -13,21 +14,21 @@ export class Overview34Component implements OnInit, OnChanges {
 
   selectedScooter: Scooter;
 
-  constructor(private scooterService: ScooterService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.router.events.subscribe(
-      (params: Params) => {
-        if (params['url'] == '/scooters/overview34/O'){
-          this.selectedScooter = null;
-        } else {
+  private childparamSub: Subscription = null;
 
-        }
-        console.log(params['url']);
-      }
-    )
+  constructor(private scooterService: ScooterService, private router: Router, private activatedRoute: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
+    this.childparamSub = this.activatedRoute.firstChild.params.subscribe((params: Params) => {
+      console.log(params)
+      if (params['id'] == 'O'){
+        this.selectedScooter = null;
+      } else {
+        this.selectedScooter = this.scooterService.findById(params['id'])
+      }
+    })
   }
 
   ngOnChanges(changes: SimpleChanges) {
