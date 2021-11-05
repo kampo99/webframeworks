@@ -6,16 +6,16 @@ package com.example.esserver.models;
  * @author W.Thomas
  */
 public class Scooter {
-    public int id = 0;
-    public String tag = "";
-    public String status = "IDLE";
-    public String gpsLocation = "";
-    public double mileage = 0;
-    public double batteryCharge = 0;
+    public long id;
+    public String tag;
+    public EStatus status;
+    public String gpsLocation;
+    public double mileage;
+    public double batteryCharge;
 
-    enum EStatus {IDLE, INUSE, MAINTENANCE};
+    public enum EStatus {IDLE, INUSE, MAINTENANCE}
 
-    public Scooter(int id, String tag, String status, String gpsLocation, double mileage, double batteryCharge) {
+    public Scooter(long id, String tag, EStatus status, String gpsLocation, double mileage, double batteryCharge) {
         this.id = id;
         this.tag = tag;
         this.status = status;
@@ -24,20 +24,20 @@ public class Scooter {
         this.batteryCharge = batteryCharge;
     }
 
-    public Scooter(String tag) {
-        this.tag = tag;
+    public Scooter(long id) {
+        this.id = id;
     }
 
-    public Scooter createSampleScooter(int pid) {
-        int tempId = pid;
-        String tempTag = this.randomString(8);
-        String tempstatus = this.getEnum();
-        String tempGps = this.gpsLocation();
-        double tempMileage = this.getRandomInt(0, 10000);
-        double tempBattery = this.getRandomInt(5, 100);
+    public static Scooter createSampleScooter(long pid) {
+        Scooter scooter = new Scooter(pid);
+        scooter.setTag(scooter.randomString(8));
+        scooter.setStatus(EStatus.values()[(int) (Math.random() * 3)]);
+        scooter.setGpsLocation(((Math.floor(Math.random() * (52000000 - 53000000 + 1)) + 53000000) / 1000000) + "N, " +
+                ((Math.floor(Math.random() * (4000000 - 5000000 + 1)) + 5000000) / 1000000) + "E");
+        scooter.setMileage(Math.random() * 10000);
+        scooter.setBatteryCharge(Math.floor(Math.random() * (100 - 5 + 1)) + 5);
 
-        Scooter temp = new Scooter(tempId, tempTag, tempstatus, tempGps, tempMileage, tempBattery);
-        return temp;
+        return scooter;
     }
 
     private String getEnum() {
@@ -94,5 +94,25 @@ public class Scooter {
                 && this.status == other.status
                 && this.gpsLocation == other.gpsLocation
                 && this.batteryCharge == other.batteryCharge;
+    }
+
+    public void setStatus(EStatus status) {
+        this.status = status;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void setGpsLocation(String gpsLocation) {
+        this.gpsLocation = gpsLocation;
+    }
+
+    public void setMileage(double mileage) {
+        this.mileage = mileage;
+    }
+
+    public void setBatteryCharge(double batteryCharge) {
+        this.batteryCharge = batteryCharge;
     }
 }
