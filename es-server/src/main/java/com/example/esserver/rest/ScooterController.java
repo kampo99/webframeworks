@@ -2,9 +2,11 @@ package com.example.esserver.rest;
 
 import com.example.esserver.models.Scooter;
 import com.example.esserver.repositories.ScootersRepository;
+import com.example.esserver.repositories.ScootersRepositoryMock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -17,18 +19,31 @@ import java.util.List;
 public class ScooterController {
 
     @Autowired
-    public ScootersRepository repo;
+    public ScootersRepositoryMock repo;
 
-    @RequestMapping("/allScooters")
+    @GetMapping("/scooters")
     public List<Scooter> getAllScooters(){
        return repo.findAll();
     }
 
-    @RequestMapping("/scooters")
-    public List<Scooter> getTwoScooters(){
-        return List.of(
-                new Scooter(1, "saidhsaf", Scooter.EStatus.IDLE, "few", 14444, 45  ),
-                new Scooter(2));
+    @GetMapping("/scooters/{id}")
+    public Scooter getScooter(@PathVariable int id){
+        return repo.findbyId(id);
     }
 
+    @PostMapping("/update")
+    public void createScooter(@RequestBody Scooter scooter){
+      Scooter savedScooter = repo.save(scooter);
+
+        ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedScooter.getId()).toUri();
+        ResponseEntity.created(location);
+    }
+
+    @DeleteMapping("/scooters/{id}")
+    public Scooter deleteScooter(@PathVariable int id){
+        return repo.deleteById(id);
+    }
 }

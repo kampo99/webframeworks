@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <description of functionality>
@@ -46,13 +47,14 @@ public class ScootersRepositoryMock implements ScootersRepository {
 
     @Override
     public Scooter save(Scooter scooter){
+        if (scooter.id == 0L){
+            scooter.setId(getNextId());
+            scooters.add(scooter);
+            return scooter;
+        }
         for (int i = 0; i < this.scooters.size(); i++) {
             if (this.scooters.get(i).id == scooter.id){
-                this.scooters.get(i).tag = scooter.tag;
-                this.scooters.get(i).status = scooter.status;
-                this.scooters.get(i).gpsLocation = scooter.gpsLocation;
-                this.scooters.get(i).mileage = scooter.mileage;
-                this.scooters.get(i).batteryCharge = scooter.batteryCharge;
+                this.scooters.set(i, scooter);
                 return this.scooters.get(i);
             }
         }

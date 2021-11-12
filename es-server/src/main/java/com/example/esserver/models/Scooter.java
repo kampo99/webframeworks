@@ -1,5 +1,7 @@
 package com.example.esserver.models;
 
+import java.util.List;
+
 /**
  * <description of functionality>
  *
@@ -14,6 +16,10 @@ public class Scooter {
     public double batteryCharge;
 
     public enum EStatus {IDLE, INUSE, MAINTENANCE}
+
+    protected Scooter(){
+
+    }
 
     public Scooter(long id, String tag, EStatus status, String gpsLocation, double mileage, double batteryCharge) {
         this.id = id;
@@ -96,6 +102,10 @@ public class Scooter {
                 && this.batteryCharge == other.batteryCharge;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void setStatus(EStatus status) {
         this.status = status;
     }
@@ -114,5 +124,29 @@ public class Scooter {
 
     public void setBatteryCharge(double batteryCharge) {
         this.batteryCharge = batteryCharge;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public EStatus getStatus() {
+        return status;
+    }
+
+    public String getGpsLocation() {
+        return gpsLocation;
+    }
+
+    public double getMileage() {
+        return mileage;
+    }
+
+    public double getBatteryCharge() {
+        return batteryCharge;
     }
 }
