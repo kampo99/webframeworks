@@ -1,5 +1,7 @@
 package com.example.esserver.models;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.List;
 
 /**
@@ -8,11 +10,15 @@ import java.util.List;
  * @author W.Thomas
  */
 public class Scooter {
+    @JsonView(Scooter.class)
     public long id;
+    @JsonView(Scooter.class)
     public String tag;
+    @JsonView(Scooter.class)
     public EStatus status;
     public String gpsLocation;
     public double mileage;
+    @JsonView(Scooter.class)
     public double batteryCharge;
 
     public enum EStatus {IDLE, INUSE, MAINTENANCE}
