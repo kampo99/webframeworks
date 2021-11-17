@@ -3,7 +3,6 @@ package com.example.esserver.rest;
 import com.example.esserver.exception.ScooterConditionFailed;
 import com.example.esserver.exception.ScooterNotFoundException;
 import com.example.esserver.models.Scooter;
-import com.example.esserver.repositories.ScootersRepository;
 import com.example.esserver.repositories.ScootersRepositoryMock;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +41,7 @@ public class ScooterController {
 
     @PostMapping("/scooters")
     public ResponseEntity<Object> createScooter(@RequestBody Scooter scooter) {
+        scooter.setId(0L);
         Scooter savedScooter = repo.save(scooter);
 
         URI location = ServletUriComponentsBuilder
@@ -51,8 +51,9 @@ public class ScooterController {
         return ResponseEntity.created(location).build();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200/scooters/{id}")
     @PutMapping("/scooters/{id}")
-    public ResponseEntity<Object> updateScooter(@RequestBody Scooter scooter, @PathVariable int id) {
+    public ResponseEntity<Object> updateScooter(@RequestBody Scooter scooter, @PathVariable String id) {
         Scooter updatedScooter = repo.save(scooter);
 
         if (updatedScooter == null) {
@@ -60,10 +61,10 @@ public class ScooterController {
         }
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 
-        return ResponseEntity.status(HttpStatus.OK).location(location).build();
+        return ResponseEntity.status(HttpStatus.ACCEPTED).location(location).build();
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200/#/scooters/overview35/{id}")
     @DeleteMapping("/scooters/{id}")
     public ResponseEntity<Object> deleteScooter(@PathVariable int id) {
         Scooter deletedScooter = repo.deleteById(id);

@@ -7,6 +7,8 @@ import {Overview33Component} from "./scooters/overview33/overview33.component";
 import {UnknownRouteComponent} from "./unknown-route/unknown-route.component";
 import {Detail34Component} from "./scooters/detail34/detail34.component";
 import {Overview34Component} from "./scooters/overview34/overview34.component";
+import {Overview35Component} from "./scooters/overview35/overview35.component";
+import {Detail35Component} from "./scooters/detail35/detail35.component";
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -18,6 +20,11 @@ const routes: Routes = [
     children: [
       {path: '', pathMatch: 'full', redirectTo: 'O'},
       {path:':id', component: Detail34Component}
+    ]},
+  {path: 'scooters/overview35', component:Overview35Component,
+    children: [
+      {path: '', pathMatch: 'full', redirectTo: 'O'},
+      {path:':id', component: Detail35Component}
     ]},
   {path: 'sign-up', component: UnknownRouteComponent},
   {path: 'sign-in', component: UnknownRouteComponent},

@@ -69,7 +69,7 @@ export class Scooter {
     if (scooter == null) {
       return null;
     }
-    return Object.assign(new Scooter(0), scooter)
+    return Object.assign(new Scooter(), scooter)
   }
 
   public equals(other: Scooter): boolean {

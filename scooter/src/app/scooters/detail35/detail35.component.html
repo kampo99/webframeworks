@@ -1,0 +1,70 @@
+<div *ngIf="inputScooter != null; else noneSelected">
+  <div class="container">
+    <div class="col">
+
+
+      <div class="row">
+        <table class="table table-striped table-md border">
+          <thead>
+          <tr>
+            <th>Update scooter {{backup.tag}} (id= {{backup.id}})</th>
+          </tr>
+          </thead>
+        </table>
+      </div>
+
+      <div class="row">
+        <label for="tagInput">Tag</label>
+        <input type="text" class="form-control" id="tagInput" placeholder="Tag" [(ngModel)]="backup.tag">
+      </div>
+
+      <div class="row">
+        <label for="statusInput">Status</label>
+        <select name="status" id="statusInput" [(ngModel)]="backup.status">
+          <option value="IDLE">IDLE</option>
+          <option value="INUSE">INUSE</option>
+          <option value="MAINTENANCE">MAINTENANCE</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="gpsInput">GPS location</label>
+        <input type="text" class="form-control" id="gpsInput" placeholder="GPS location"
+               [(ngModel)]="backup.gpsLocation">
+      </div>
+
+      <div class="row">
+        <label for="mileageInput">Mileage (in km)</label>
+        <input type="number" class="form-control" id="mileageInput" placeholder="Mileage"
+               [(ngModel)]="backup.mileage">
+      </div>
+
+      <div class="row">
+        <label for="chargeInput">Battery charge (in %)</label>
+        <input type="number" class="form-control" id="chargeInput" placeholder="Charge"
+               [(ngModel)]="backup.batteryCharge">
+      </div>
+
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-danger float-end" (click)="onDeleteScooter()" [ngClass]="{'disabled' : enabled()}">Delete</button>
+      </div>
+
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-primary float-end" (click)="onSave()" [ngClass]="{'disabled' : disabled()}">Save</button>
+      </div>
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-outline-primary float-end" (click)="onClear()">Clear</button>
+      </div>
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-outline-primary float-end" id="reset" (click)="onReset()" [ngClass]="{'disabled' : disabled()}">Reset</button>
+      </div>
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-primary float-end" (click)="onCancel()">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<ng-template #noneSelected>
+  <p>Select a scooter from the left page!</p>
+</ng-template>

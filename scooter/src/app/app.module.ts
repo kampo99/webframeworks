@@ -14,6 +14,9 @@ import { Detail33Component } from './scooters/detail33/detail33.component';
 import {UnknownRouteComponent } from './unknown-route/unknown-route.component';
 import { Overview34Component } from './scooters/overview34/overview34.component';
 import { Detail34Component } from './scooters/detail34/detail34.component';
+import { Detail35Component } from './scooters/detail35/detail35.component';
+import { Overview35Component } from './scooters/overview35/overview35.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -29,12 +32,15 @@ import { Detail34Component } from './scooters/detail34/detail34.component';
     Detail33Component,
     UnknownRouteComponent,
     Overview34Component,
-    Detail34Component
+    Detail34Component,
+    Detail35Component,
+    Overview35Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
