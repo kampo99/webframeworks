@@ -48,7 +48,7 @@ public class ScooterController {
                 .fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedScooter.getId()).toUri();
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(savedScooter);
     }
 
     @CrossOrigin(origins = "http://localhost:4200/scooters/{id}")
@@ -64,17 +64,24 @@ public class ScooterController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).location(location).build();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200/#/scooters/overview35/{id}")
+    @CrossOrigin(origins = "http://localhost:4200/scooters/{id}")
     @DeleteMapping("/scooters/{id}")
-    public ResponseEntity<Object> deleteScooter(@PathVariable int id) {
-        Scooter deletedScooter = repo.deleteById(id);
-
-        if (deletedScooter == null) {
+    public ResponseEntity<Object> deleteScooter(@PathVariable Integer id) {
+        if (id == null){
             throw new ScooterNotFoundException("Scooter with id-" + id + " does not exist");
         }
+
+        Scooter founded = repo.findbyId(id);
+
+        if (founded == null) {
+            throw new ScooterNotFoundException("Scooter with id-" + id + " does not exist");
+        }
+
+        repo.deleteById(founded.id);
+
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 
-        return ResponseEntity.status(HttpStatus.OK).location(location).build();
+        return ResponseEntity.status(HttpStatus.ACCEPTED).location(location).build();
     }
 
     @JsonView(Scooter.class)

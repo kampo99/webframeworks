@@ -33,10 +33,8 @@ export class ScooterSbService {
       })
   }
 
-  private restPostScooter(scooter: Scooter) {
-    this.http.post('http://localhost:8080/scooters', scooter).subscribe(responseData => {
-      console.log(responseData);
-    });
+  private restPostScooter(scooter: Scooter){
+    return this.http.post('http://localhost:8080/scooters', scooter);
   }
 
   private restPutScooter(scooter: Scooter){
@@ -45,7 +43,7 @@ export class ScooterSbService {
   }
 
   private restDeleteScooter(scooterId: number){
-    this.http.delete('http://localhost:8080/scooters/{id}').subscribe(responseData =>{
+    this.http.delete('http://localhost:8080/scooters/' + scooterId).subscribe(responseData =>{
 
     })
   }
@@ -64,8 +62,9 @@ export class ScooterSbService {
   }
 
   newScooter(scooter: Scooter){
-    this.restPostScooter(scooter);
+  return this.restPostScooter(scooter);
   }
+
 
   save(scooter: Scooter): Scooter {
     for (let i = 0; i < this.scooters.length; i++) {
@@ -83,7 +82,7 @@ export class ScooterSbService {
       if (this.scooters[i].id == id) {
         const index = this.scooters.indexOf(this.scooters[i])
         this.scooters.splice(index, 1);
-        this.restDeleteScooter(index)
+        this.restDeleteScooter(id);
         break;
       }
     }

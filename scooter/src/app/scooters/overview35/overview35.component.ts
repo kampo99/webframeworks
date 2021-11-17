@@ -51,10 +51,13 @@ export class Overview35Component implements OnInit, OnChanges {
   }
 
   onNewScooter() {
-    this.selectedScooter = Scooter.createSampleScooter(this.scooterService.getNextId());
-    this.scooters.push(this.selectedScooter);
-    this.scooterService.newScooter(this.selectedScooter);
-    this.router.navigate([this.selectedScooter.id], {relativeTo: this.activatedRoute});
+    this.scooterService.newScooter(Scooter.createSampleScooter(0)).subscribe(responseData => {
+      this.selectedScooter = Object.assign(new Scooter(), responseData);
+      this.scooters.push(this.selectedScooter);
+      this.router.navigate([this.selectedScooter.id], {relativeTo: this.activatedRoute});
+    });
+
+
   }
 
 }

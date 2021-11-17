@@ -43,7 +43,7 @@ export class Detail35Component implements OnInit, OnChanges{
 
   onDeleteScooter(){
     if (confirm("are you sure to discard unsaved changes ?")){
-      this.scooterService.deleteById(this.inputScooter.id)
+      this.scooterService.deleteById(this.inputScooter.id);
       this.inputScooter = null;
       this.router.navigate(['scooters/overview35/O']);
     }
