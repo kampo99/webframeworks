@@ -23,10 +23,4 @@ export class Detail32Component implements OnInit {
     this.inputScooter = null;
   }
 
-  // onSave(){
-  //   console.log("Changed scooter" + this.element)
-  //   this.savedScooter.emit(this.element);
-  //   console.log("Saving Scooter" , this.savedScooter);
-  // }
-
 }

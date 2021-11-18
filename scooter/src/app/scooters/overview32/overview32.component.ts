@@ -52,19 +52,4 @@ export class Overview32Component implements OnInit {
     }
   }
 
-  // onScooterSaved(scooter: Scooter){
-  //   // this.onSelect(scooter);
-  //   this.save(scooter);
-  //   console.log("recieved a scooter as output ",scooter)
-  // }
-
-  // save(scooter: Scooter){
-  //   console.log("In save functon" + scooter);
-  //   for (let i = 0; i < this.scooters.length; i++) {
-  //     if (this.scooters[i].id == scooter.id){
-  //       this.scooters[i] = scooter;
-  //       break;
-  //     }
-  //   }
-  // }
 }
