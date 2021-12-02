@@ -27,6 +27,9 @@ export class Detail35Component implements OnInit, OnChanges{
     this.route.params.subscribe(
       (params: Params) => {
         this.inputScooter = this.scooterService.findById(params['id']);
+        if (this.inputScooter == null){
+          this.router.navigate(['scooters/overview35/O'])
+        }
         this.backup = Scooter.copyConstructor(this.inputScooter);
       }
     )

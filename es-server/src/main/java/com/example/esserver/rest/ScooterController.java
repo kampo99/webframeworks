@@ -3,6 +3,7 @@ package com.example.esserver.rest;
 import com.example.esserver.exception.ScooterConditionFailed;
 import com.example.esserver.exception.ScooterNotFoundException;
 import com.example.esserver.models.Scooter;
+import com.example.esserver.repositories.ScootersRepository;
 import com.example.esserver.repositories.ScootersRepositoryMock;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import java.util.List;
 public class ScooterController {
 
     @Autowired
-    public ScootersRepositoryMock repo;
+    public ScootersRepository repo;
 
     @GetMapping("/scooters")
     public List<Scooter> getAllScooters() {
