@@ -12,6 +12,7 @@ import java.util.Objects;
  *
  * @author W.Thomas
  */
+
 @Component
 public class ScootersRepositoryMock implements ScootersRepository {
     List<Scooter> scooters = new ArrayList<>();

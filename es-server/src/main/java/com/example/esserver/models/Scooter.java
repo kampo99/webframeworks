@@ -2,14 +2,17 @@ package com.example.esserver.models;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import java.util.List;
 
-/**
- * <description of functionality>
- *
- * @author W.Thomas
- */
+@Entity
 public class Scooter {
+
+    @Id
+    @GeneratedValue
     @JsonView(Scooter.class)
     public long id;
     @JsonView(Scooter.class)
