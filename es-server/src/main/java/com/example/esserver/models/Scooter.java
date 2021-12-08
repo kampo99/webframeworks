@@ -2,17 +2,16 @@ package com.example.esserver.models;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Scooter {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     @JsonView(Scooter.class)
     public long id;
     @JsonView(Scooter.class)
@@ -23,6 +22,9 @@ public class Scooter {
     public double mileage;
     @JsonView(Scooter.class)
     public double batteryCharge;
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    public List<Trip> trips = new ArrayList<>();
 
     public enum EStatus {IDLE, INUSE, MAINTENANCE}
 
@@ -51,8 +53,33 @@ public class Scooter {
                 ((Math.floor(Math.random() * (4000000 - 5000000 + 1)) + 5000000) / 1000000) + "E");
         scooter.setMileage(Math.random() * 10000);
         scooter.setBatteryCharge(Math.floor(Math.random() * (100 - 5 + 1)) + 5);
-
         return scooter;
+    }
+
+    public boolean associateTrip(Trip trip){
+        if (trip != null){
+            for (int i = 0; i < trips.size(); i++) {
+                if (trips.get(i).id == trip.id){
+                    return false;
+                }
+            }
+            this.trips.add(trip);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean disassociateTrip(Trip trip){
+        if (trip != null){
+            for (int i = 0; i < trips.size(); i++) {
+                if (trips.get(i).id == trip.id){
+                    trip.setScooterInsuse(null);
+                    this.trips.remove(trips.get(i));
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private String getEnum() {

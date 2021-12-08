@@ -2,6 +2,7 @@ package com.example.esserver.repositories;
 
 import com.example.esserver.models.Scooter;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Objects;
  * @author W.Thomas
  */
 
-@Component
+@Repository
 public class ScootersRepositoryMock implements ScootersRepository {
     List<Scooter> scooters = new ArrayList<>();
     int nextId = 30000;

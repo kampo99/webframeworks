@@ -3,8 +3,10 @@ package com.example.esserver.rest;
 import com.example.esserver.exception.ScooterConditionFailed;
 import com.example.esserver.exception.ScooterNotFoundException;
 import com.example.esserver.models.Scooter;
+import com.example.esserver.models.Trip;
 import com.example.esserver.repositories.ScootersRepository;
 import com.example.esserver.repositories.ScootersRepositoryMock;
+import com.example.esserver.repositories.TripsRepository;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,9 @@ public class ScooterController {
 
     @Autowired
     public ScootersRepository repo;
+
+    @Autowired
+    public TripsRepository trepo;
 
     @GetMapping("/scooters")
     public List<Scooter> getAllScooters() {
@@ -90,4 +95,24 @@ public class ScooterController {
     public List<Scooter> getScooterSummary(){
         return repo.findAll();
     }
+
+
+    @PostMapping("/scooters/{id}/trips")
+    public ResponseEntity<Object> createTrip(@PathVariable Integer id, @RequestBody Trip trip){
+
+        if (id == null){
+            throw new ScooterNotFoundException("Scooter with id-" + id + " does not exist");
+        }
+
+        Scooter found = repo.findbyId(id);
+
+        if (found == null) {
+            throw new ScooterNotFoundException("Scooter with id-" + id + " does not exist");
+        }
+        if (trip.startDate)
+        trepo.save(trip)
+    }
+
+
+
 }
