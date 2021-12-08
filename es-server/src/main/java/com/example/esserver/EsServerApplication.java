@@ -62,7 +62,6 @@ public class EsServerApplication implements CommandLineRunner {
                 Trip savedTrip = this.trepo.save(trip);
                 savedTrip.associateScooter(savedScooter);
                 savedScooter.associateTrip(savedTrip);
-                savedScooter.disassociateTrip(savedTrip);
             }
         }
     }

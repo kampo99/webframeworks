@@ -14,8 +14,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <description of functionality>
@@ -98,7 +101,7 @@ public class ScooterController {
 
 
     @PostMapping("/scooters/{id}/trips")
-    public ResponseEntity<Object> createTrip(@PathVariable Integer id, @RequestBody Trip trip){
+    public ResponseEntity<Object> createTrip(@PathVariable Integer id){
 
         if (id == null){
             throw new ScooterNotFoundException("Scooter with id-" + id + " does not exist");
@@ -109,8 +112,27 @@ public class ScooterController {
         if (found == null) {
             throw new ScooterNotFoundException("Scooter with id-" + id + " does not exist");
         }
-        if (trip.startDate)
-        trepo.save(trip)
+
+        if (found.status != Scooter.EStatus.IDLE || found.batteryCharge <= 10){
+            throw new ScooterConditionFailed("Scooter-Id=" + found.getId() + " with status " + found.getStatus() +
+                    " and battery level " + found.getBatteryCharge() + "% cannot be claimed for another trip");
+        }
+
+        Trip t = Trip.createSampleTrip(found);
+        Trip savedTrip = trepo.save(t);
+
+        savedTrip.associateScooter(found);
+        found.associateTrip(savedTrip);
+        found.setStatus(Scooter.EStatus.INUSE);
+
+        repo.save(found);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedTrip.getId()).toUri();
+
+        return ResponseEntity.created(location).body(savedTrip);
     }
 
 

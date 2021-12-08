@@ -1,11 +1,10 @@
 package com.example.esserver.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Random;
+import java.util.Optional;
 
 /**
  * <description of functionality>
@@ -15,9 +14,11 @@ import java.util.Random;
 
 @Entity
 public class Trip {
+
     @Id
     @GeneratedValue
     public Long id;
+
     public LocalDateTime startDate;
     public LocalDateTime endDate;
     public String startPosition;
@@ -51,9 +52,9 @@ public class Trip {
     public static Trip createSampleTrip(Scooter scooter){
         Trip trip = new Trip();
         trip.setStartDate(LocalDateTime.now());
-        trip.setEndDate(LocalDateTime.of(2021, 1, 1, 13, 50, 20));
+        trip.setEndDate(null);
         trip.setStartPosition("Amsterdam");
-        trip.setEndPosition("Rotterdam");
+        trip.setEndPosition(null);
         trip.setMileage(Math.random() * 10000);
         trip.setCostTrip(Math.random() * 100);
         trip.setScooterInsuse(scooter);
