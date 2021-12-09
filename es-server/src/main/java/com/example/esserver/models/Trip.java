@@ -49,12 +49,17 @@ public class Trip {
 
     }
 
-    public static Trip createSampleTrip(Scooter scooter){
+    public static Trip createSampleTrip(Scooter scooter, Boolean done){
         Trip trip = new Trip();
         trip.setStartDate(LocalDateTime.now());
-        trip.setEndDate(null);
+        if (!done){
+            trip.setEndDate(null);
+            trip.setEndPosition(null);
+        } else {
+            trip.setEndDate(LocalDateTime.of(2021, 12, 10, 14, 50));
+            trip.setEndPosition("Rotterdam");
+        }
         trip.setStartPosition("Amsterdam");
-        trip.setEndPosition(null);
         trip.setMileage(Math.random() * 10000);
         trip.setCostTrip(Math.random() * 100);
         trip.setScooterInsuse(scooter);

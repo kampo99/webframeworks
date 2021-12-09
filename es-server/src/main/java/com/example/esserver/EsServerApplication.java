@@ -58,7 +58,7 @@ public class EsServerApplication implements CommandLineRunner {
             Scooter scooter = Scooter.createSampleScooter(0);
             Scooter savedScooter = this.repo.save(scooter);
             for (int j = 0; j < 2; j++) {
-                Trip trip = Trip.createSampleTrip(savedScooter);
+                Trip trip = Trip.createSampleTrip(savedScooter, true);
                 Trip savedTrip = this.trepo.save(trip);
                 savedTrip.associateScooter(savedScooter);
                 savedScooter.associateTrip(savedTrip);

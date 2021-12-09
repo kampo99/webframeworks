@@ -118,7 +118,7 @@ public class ScooterController {
                     " and battery level " + found.getBatteryCharge() + "% cannot be claimed for another trip");
         }
 
-        Trip t = Trip.createSampleTrip(found);
+        Trip t = Trip.createSampleTrip(found, false);
         Trip savedTrip = trepo.save(t);
 
         savedTrip.associateScooter(found);
