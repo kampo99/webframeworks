@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
-/**
- * <description of functionality>
- *
- * @author W.Thomas
- */
+
 
 @Entity
+@NamedQueries({
+
+        @NamedQuery(name = "Trip_find_current_from_scooter",
+        query = "SELECT t FROM Trip t WHERE t.scooterInuse = :scooterInuse")
+})
 public class Trip {
 
     @Id
@@ -28,9 +28,9 @@ public class Trip {
 
     @JsonBackReference
     @ManyToOne
-    public Scooter scooterInsuse;
+    public Scooter scooterInuse;
 
-    public Trip(Long id, LocalDateTime startDate, LocalDateTime endDate, String startPosition, String endPosition, Double mileage, Double costTrip, Scooter scooterInsuse) {
+    public Trip(Long id, LocalDateTime startDate, LocalDateTime endDate, String startPosition, String endPosition, Double mileage, Double costTrip, Scooter scooterInuse) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -38,7 +38,7 @@ public class Trip {
         this.endPosition = endPosition;
         this.mileage = mileage;
         this.costTrip = costTrip;
-        this.scooterInsuse = scooterInsuse;
+        this.scooterInuse = scooterInuse;
     }
 
     public Trip(Long id) {
@@ -62,7 +62,7 @@ public class Trip {
         trip.setStartPosition("Amsterdam");
         trip.setMileage(Math.random() * 10000);
         trip.setCostTrip(Math.random() * 100);
-        trip.setScooterInsuse(scooter);
+        trip.setScooterInuse(scooter);
         return trip;
     }
 
@@ -74,7 +74,7 @@ public class Trip {
                     return false;
                 }
             }
-            scooterInsuse = scooter;
+            scooterInuse = scooter;
             return true;
         }
         return false;
@@ -136,11 +136,11 @@ public class Trip {
         this.costTrip = costTrip;
     }
 
-    public Scooter getScooterInsuse() {
-        return scooterInsuse;
+    public Scooter getScooterInuse() {
+        return scooterInuse;
     }
 
-    public void setScooterInsuse(Scooter scooterInsuse) {
-        this.scooterInsuse = scooterInsuse;
+    public void setScooterInuse(Scooter scooterInuse) {
+        this.scooterInuse = scooterInuse;
     }
 }

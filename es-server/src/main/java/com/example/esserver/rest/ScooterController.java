@@ -5,7 +5,6 @@ import com.example.esserver.exception.ScooterNotFoundException;
 import com.example.esserver.models.Scooter;
 import com.example.esserver.models.Trip;
 import com.example.esserver.repositories.ScootersRepository;
-import com.example.esserver.repositories.ScootersRepositoryMock;
 import com.example.esserver.repositories.TripsRepository;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.transaction.Transactional;
 import java.net.URI;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -35,8 +33,32 @@ public class ScooterController {
     public TripsRepository trepo;
 
     @GetMapping("/scooters")
-    public List<Scooter> getAllScooters() {
-        return repo.findAll();
+    public List<Scooter> getAllScooters(@RequestParam Optional<String> battery, @RequestParam Optional<String> status) {
+
+        if (battery.isPresent() && status.isPresent()){
+            throw new ScooterConditionFailed("battery or status not present");
+        }
+
+        if (battery.isPresent()){
+            try {
+                int percent = Integer.parseInt(battery.get());
+                return repo.findByQuery("Scooter_find_by_battery", percent);
+            } catch (Exception error){
+                throw new ScooterConditionFailed("Battery percent cant have the value of " + battery.get());
+            }
+
+        }
+
+        if (status.isPresent()){
+            try {
+                Scooter.EStatus state = Scooter.EStatus.valueOf(status.get().toUpperCase(Locale.ROOT));
+                return repo.findByQuery("Scooter_find_by_status", state);
+            } catch (Exception error){
+                throw new ScooterConditionFailed("Status=" + status.get() + " is not a valid scooter status");
+            }
+        }
+
+       return repo.findAll();
     }
 
     @GetMapping("/scooters/{id}")
@@ -135,6 +157,13 @@ public class ScooterController {
         return ResponseEntity.created(location).body(savedTrip);
     }
 
+
+    @GetMapping("/scooters/currenttrips")
+    public ResponseEntity<Object> currentTrips(@RequestBody Scooter scooter){
+        List<Trip> foundTrips = trepo.findByQuery("Trip_find_current_from_scooter", scooter);
+
+        return ResponseEntity.ok().body(foundTrips);
+    }
 
 
 }

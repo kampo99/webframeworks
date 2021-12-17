@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 
 @Primary
@@ -19,6 +20,27 @@ public class ScootersRepositoryJpa implements ScootersRepository{
 
     @PersistenceContext
     private EntityManager em;
+
+    @Override
+    public List<Scooter> findByQuery(String jpqlName, Object... params) {
+        TypedQuery<Scooter> namedQuery =
+                em.createNamedQuery(jpqlName, Scooter.class);
+
+
+        if (Objects.equals(jpqlName, "Scooter_find_by_status")){
+            return namedQuery
+                    .setParameter("status", params[0])
+                    .getResultList();
+        }
+
+        if (Objects.equals(jpqlName, "Scooter_find_by_battery")){
+            return namedQuery
+                    .setParameter("max", params[0])
+                    .getResultList();
+        }
+        return null;
+
+    }
 
     @Override
     public List<Scooter> findAll() {

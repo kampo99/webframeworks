@@ -3,11 +3,20 @@ package com.example.esserver.models;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @Entity
+@NamedQueries({
+
+        @NamedQuery(name = "Scooter_find_by_status",
+        query = "SELECT s FROM Scooter s WHERE s.status = :status"),
+
+        @NamedQuery(name = "Scooter_find_by_battery",
+        query = "SELECT s FROM Scooter s WHERE s.batteryCharge < :max")
+})
 public class Scooter {
 
     @Id
@@ -21,7 +30,7 @@ public class Scooter {
     public String gpsLocation;
     public double mileage;
     @JsonView(Scooter.class)
-    public double batteryCharge;
+    public int batteryCharge;
 
     @OneToMany(cascade = CascadeType.REMOVE)
     public List<Trip> trips = new ArrayList<>();
@@ -32,7 +41,7 @@ public class Scooter {
 
     }
 
-    public Scooter(long id, String tag, EStatus status, String gpsLocation, double mileage, double batteryCharge) {
+    public Scooter(long id, String tag, EStatus status, String gpsLocation, double mileage, int batteryCharge) {
         this.id = id;
         this.tag = tag;
         this.status = status;
@@ -52,7 +61,7 @@ public class Scooter {
         scooter.setGpsLocation(((Math.floor(Math.random() * (52000000 - 53000000 + 1)) + 53000000) / 1000000) + "N, " +
                 ((Math.floor(Math.random() * (4000000 - 5000000 + 1)) + 5000000) / 1000000) + "E");
         scooter.setMileage(Math.random() * 10000);
-        scooter.setBatteryCharge(Math.floor(Math.random() * (100 - 5 + 1)) + 5);
+        scooter.setBatteryCharge((int) (Math.floor(Math.random() * (100 - 5 + 1)) + 5));
         return scooter;
     }
 
@@ -73,7 +82,7 @@ public class Scooter {
         if (trip != null){
             for (int i = 0; i < trips.size(); i++) {
                 if (trips.get(i).id == trip.id){
-                    trip.setScooterInsuse(null);
+                    trip.setScooterInuse(null);
                     this.trips.remove(trips.get(i));
                     return true;
                 }
@@ -158,7 +167,7 @@ public class Scooter {
         this.mileage = mileage;
     }
 
-    public void setBatteryCharge(double batteryCharge) {
+    public void setBatteryCharge(int batteryCharge) {
         this.batteryCharge = batteryCharge;
     }
 

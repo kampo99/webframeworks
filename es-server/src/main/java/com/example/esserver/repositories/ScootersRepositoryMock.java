@@ -21,6 +21,11 @@ public class ScootersRepositoryMock implements ScootersRepository {
 
 
     @Override
+    public List<Scooter> findByQuery(String jpqlName, Object... params) {
+        return null;
+    }
+
+    @Override
     public List<Scooter> findAll() {
         return scooters;
     }
@@ -39,9 +44,9 @@ public class ScootersRepositoryMock implements ScootersRepository {
 
     @Override
     public Scooter findbyId(long id){
-        for (int i = 0; i < this.scooters.size(); i++) {
-            if (id == this.scooters.get(i).id){
-                return this.scooters.get(i);
+        for (Scooter scooter : this.scooters) {
+            if (id == scooter.id) {
+                return scooter;
             }
         }
         return null;

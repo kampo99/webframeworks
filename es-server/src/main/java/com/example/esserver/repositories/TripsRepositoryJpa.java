@@ -19,6 +19,17 @@ public class TripsRepositoryJpa implements TripsRepository{
     private EntityManager em;
 
     @Override
+    public List<Trip> findByQuery(String jpqlName, Object... params) {
+        TypedQuery<Trip> namedQuery =
+                em.createNamedQuery(jpqlName, Trip.class);
+
+        return namedQuery
+                .setParameter("scooterInuse", params[0])
+                .getResultList();
+
+    }
+
+    @Override
     public List<Trip> findAll() {
         TypedQuery<Trip> namedQuery = em.createQuery("select t from Trip t", Trip.class);
         return namedQuery.getResultList();
