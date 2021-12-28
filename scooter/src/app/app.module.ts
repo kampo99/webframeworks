@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { HeaderComponent } from './header/header.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HeaderComponent } from './headers/header/header.component';
+import { NavbarComponent } from './navbars/navbar/navbar.component';
 import {FormsModule} from "@angular/forms";
 import { Overview31Component } from './scooters/overview31/overview31.component';
 import { Overview32Component } from './scooters/overview32/overview32.component';
@@ -17,6 +17,9 @@ import { Detail34Component } from './scooters/detail34/detail34.component';
 import { Detail35Component } from './scooters/detail35/detail35.component';
 import { Overview35Component } from './scooters/overview35/overview35.component';
 import {HttpClientModule} from "@angular/common/http";
+import { HeadersbComponent } from './headers/headersb/headersb.component';
+import { NavbarsbComponent } from './navbars/navbarsb/navbarsb.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import {HttpClientModule} from "@angular/common/http";
     Overview34Component,
     Detail34Component,
     Detail35Component,
-    Overview35Component
+    Overview35Component,
+    HeadersbComponent,
+    NavbarsbComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

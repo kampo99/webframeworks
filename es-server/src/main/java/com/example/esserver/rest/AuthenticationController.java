@@ -45,6 +45,8 @@ public class AuthenticationController {
 
         String token = tokenUtils.encode(user.getEmail(), user.getRole().equals("admin"));
 
-        return ResponseEntity.accepted().header(HttpHeaders.AUTHORIZATION, "Bearer " + token).body(user);
+        return ResponseEntity.accepted()
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                .body(user);
     }
 }

@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Please provide your login credentials</h1>
+  <form>
+    <label for="email">Email:</label>
+    <br>
+    <input type="text" id="email" name="email" [(ngModel)]="email">
+    <br>
+    <label for="password">Password:</label>
+    <br>
+    <input type="text" id="password" name="password" [(ngModel)]="password">
+    <br><br>
+    <h5 class="alert-danger alert" *ngIf="alert" >Could not authenticate with provided credentials</h5>
+    <button (click)="logIn()" class="btn btn-success" type="submit" value="Log in">Log in</button>
+  </form>
+  <br>
+  <h3>Current Token:</h3>
+
+    <textarea class="w-100 ">{{token}}</textarea>
+
+</div>

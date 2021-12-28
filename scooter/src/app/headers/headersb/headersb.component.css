@@ -1,0 +1,49 @@
+#wapenlogo{
+  /*position: absolute;*/
+  top: 6%;
+  left: 1%;
+  width: 25%;
+  /*border: 2px solid black;*/
+}
+#fietsbordlogo{
+  /*position: absolute;*/
+  top: 6%;
+  right: 1%;
+  width: 12%;
+  float: right;
+  /*border: 2px solid black;*/
+}
+
+#header{
+  display: block;
+  /*position: absolute;*/
+  top: 0%;
+  width: 100%;
+  left: 0%;
+  right: 0%;
+  height: 12%;
+  background-color: bisque;
+}
+
+#titel{
+  text-align: center;
+}
+
+#subtitel{
+  text-align: center;
+}
+
+#date{
+  text-align: center;
+
+}
+@media (max-width: 975px){
+  #wapenlogo{
+    width: 75%;
+  }
+  #fietsbordlogo{
+    width: 40%;
+  }
+}
+
+

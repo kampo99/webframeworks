@@ -1,0 +1,22 @@
+<div id="header" class="container-fluid">
+  <div class="row">
+    <div class="col"><img src="../../../assets/images/logo-amsterdam-756x378.png" id="wapenlogo" alt="Wapen Amsterdam"></div>
+    <div class="col"><h1 class="text-center">E-bikes Amsterdam</h1></div>
+    <div class="col"><img src="../../../assets/images/Fietsbord%20logo.png" id="fietsbordlogo" alt="Fietsbord"></div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col">
+      <h6 class="text-center">{{date}}</h6>
+    </div>
+    <div class="col">
+      <h6 class="text-center">Get your kicks on Route 66!</h6>
+      <h6 *ngIf="name != ''" class="text-center">Welcome {{name}}</h6>
+      <h6 *ngIf="name == ''" class="text-center">Welcome Visitor</h6>
+    </div>
+  </div>
+
+</div>
