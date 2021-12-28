@@ -32,7 +32,7 @@ public class Scooter {
     @JsonView(Scooter.class)
     public int batteryCharge;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "scooterInuse")
     public List<Trip> trips = new ArrayList<>();
 
     public enum EStatus {IDLE, INUSE, MAINTENANCE}

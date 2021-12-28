@@ -29,6 +29,7 @@ public class EsServerApplication implements CommandLineRunner {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
                 registry.addMapping("/scooters").allowedOrigins("http://localhost:4200");
                 registry.addMapping("/scooters/{id}").allowedOrigins("http://localhost:4200");
             }

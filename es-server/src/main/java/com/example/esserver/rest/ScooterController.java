@@ -1,5 +1,7 @@
 package com.example.esserver.rest;
 
+import com.example.esserver.JWT.JWTokenInfo;
+import com.example.esserver.exception.AuthorizationException;
 import com.example.esserver.exception.ScooterConditionFailed;
 import com.example.esserver.exception.ScooterNotFoundException;
 import com.example.esserver.models.Scooter;
@@ -18,11 +20,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-/**
- * <description of functionality>
- *
- * @author W.Thomas
- */
+
+
 @RestController
 public class ScooterController {
 
@@ -32,12 +31,23 @@ public class ScooterController {
     @Autowired
     public TripsRepository trepo;
 
+
+    @GetMapping("/scooters/currenttrips")
+    public ResponseEntity<Object> currentTrips(@RequestBody Scooter scooter){
+        List<Trip> foundTrips = trepo.findByQuery("Trip_find_current_from_scooter", scooter);
+
+        return ResponseEntity.ok().body(foundTrips);
+    }
+
     @GetMapping("/scooters")
-    public List<Scooter> getAllScooters(@RequestParam Optional<String> battery, @RequestParam Optional<String> status) {
+    public List<Scooter> getAllScooters(@RequestParam Optional<String> battery, @RequestParam Optional<String> status){
+
+
 
         if (battery.isPresent() && status.isPresent()){
             throw new ScooterConditionFailed("battery or status not present");
         }
+
 
         if (battery.isPresent()){
             try {
@@ -155,14 +165,6 @@ public class ScooterController {
                 .buildAndExpand(savedTrip.getId()).toUri();
 
         return ResponseEntity.created(location).body(savedTrip);
-    }
-
-
-    @GetMapping("/scooters/currenttrips")
-    public ResponseEntity<Object> currentTrips(@RequestBody Scooter scooter){
-        List<Trip> foundTrips = trepo.findByQuery("Trip_find_current_from_scooter", scooter);
-
-        return ResponseEntity.ok().body(foundTrips);
     }
 
 
