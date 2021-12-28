@@ -9,6 +9,7 @@ import {Detail34Component} from "./scooters/detail34/detail34.component";
 import {Overview34Component} from "./scooters/overview34/overview34.component";
 import {Overview35Component} from "./scooters/overview35/overview35.component";
 import {Detail35Component} from "./scooters/detail35/detail35.component";
+import {SignInComponent} from "./sign-in/sign-in.component";
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -27,7 +28,7 @@ const routes: Routes = [
       {path:':id', component: Detail35Component}
     ]},
   {path: 'sign-up', component: UnknownRouteComponent},
-  {path: 'sign-in', component: UnknownRouteComponent},
+  {path: 'sign-in', component: SignInComponent},
   {path: '**', component: UnknownRouteComponent}
 ];
 
