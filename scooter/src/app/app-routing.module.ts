@@ -29,6 +29,7 @@ const routes: Routes = [
     ]},
   {path: 'sign-up', component: UnknownRouteComponent},
   {path: 'sign-in', component: SignInComponent},
+  {path: 'sign-out', redirectTo: '/sign-in?signOut=true'},
   {path: '**', component: UnknownRouteComponent}
 ];
 
