@@ -14,8 +14,8 @@
     </div>
     <div class="col">
       <h6 class="text-center">Get your kicks on Route 66!</h6>
-      <h6 *ngIf="name != ''" class="text-center">Welcome {{name}}</h6>
-      <h6 *ngIf="name == ''" class="text-center">Welcome Visitor</h6>
+      <h6 *ngIf="loggedIn()" class="text-center">Welcome {{name}}</h6>
+      <h6 *ngIf="!loggedIn()" class="text-center">Welcome Visitor</h6>
     </div>
   </div>
 

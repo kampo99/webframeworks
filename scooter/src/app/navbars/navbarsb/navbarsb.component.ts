@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SessionSbService} from "../../service/session-sb.service";
 
 @Component({
   selector: 'app-navbarsb',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarsbComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor(private sessionsbService: SessionSbService) {
+
+  }
 
   ngOnInit(): void {
   }
 
+
+  loggedIn(){
+    return this.sessionsbService.getTokenFromBrowserStorage() != undefined;
+  }
 }

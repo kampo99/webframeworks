@@ -20,11 +20,17 @@ export class SessionSbService {
   }
 
 
-  async asyncSignIn(email: String, password: String): Promise<User>{
+   async asyncSignIn(email: String, password: String): Promise<User>{
 
     const observable = this.httpClient.post("http://localhost:8080/authentication/login",
       {email: email, password: password}, { observe: 'response' }).pipe(share());
 
+
+    let response = await observable.toPromise().catch(reason => { console.log(reason); this.signOut(); return null})
+
+     let user = (response?.body as unknown as User);
+
+    this.currentUser = user;
 
     observable.subscribe(data => {
         console.log(data)
@@ -37,20 +43,20 @@ export class SessionSbService {
 
       token = token.replace('Bearer ', '');
 
-      sessionStorage.setItem('token', token);
+      this.saveTokenIntoBrowserStorage(token, this.currentUser);
 
       this.updateUserInfo();
-      return data?.body as unknown as User;
     },
       error => {
       console.log(error)
       this.signOut();
       })
-    return null;
+    return user;
   }
 
   signOut(){
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
     this.updateUserInfo();
   }
 
@@ -76,6 +82,7 @@ export class SessionSbService {
       this.currentUser.exp = decodedToken.exp;
 
     } else {
+      console.log("hello")
       this.currentUser = null;
     }
   }

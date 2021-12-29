@@ -19,7 +19,9 @@ export class HeadersbComponent implements OnInit, OnChanges {
 
   setName(){
     try {
-      this.name = this.sessionsbService.currentUser.name;
+      this.name = sessionStorage.getItem('user')['name'];
+      console.log(this.name = sessionStorage.getItem('user')['name']);
+      console.log("name veranderd")
     } catch (error){
 
     }
@@ -32,6 +34,14 @@ export class HeadersbComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.setName();
+  }
+
+  loggedIn(){
+    if (this.sessionsbService.getTokenFromBrowserStorage() != undefined){
+      this.name = JSON.parse(sessionStorage.getItem('user')).name;
+      return true;
+    }
+    return false;
   }
 
 }

@@ -32,6 +32,11 @@
     display: block;
     right: 0%;
   }
+  #navRight3{
+    position: absolute;
+    display: block;
+    right: 0%;
+  }
 }
 
 .table-active{

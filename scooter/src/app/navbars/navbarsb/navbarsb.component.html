@@ -34,7 +34,7 @@
             Sign up
           </a>
         </li>
-        <li id="navRight2" class="nav-item">
+        <li *ngIf="!loggedIn()" id="navRight2" class="nav-item">
           <a class="nav-link" routerLink="/sign-in">
             Log in
           </a>
