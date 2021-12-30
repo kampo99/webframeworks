@@ -10,6 +10,8 @@ import {Overview34Component} from "./scooters/overview34/overview34.component";
 import {Overview35Component} from "./scooters/overview35/overview35.component";
 import {Detail35Component} from "./scooters/detail35/detail35.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
+import {ErrorComponent} from "./error/error.component";
+import {LoggedInGuard} from "./guard/logged-in.guard";
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -30,6 +32,7 @@ const routes: Routes = [
   {path: 'sign-up', component: UnknownRouteComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-out', redirectTo: '/sign-in?signOut=true'},
+  {path: 'error', component: ErrorComponent},
   {path: '**', component: UnknownRouteComponent}
 ];
 

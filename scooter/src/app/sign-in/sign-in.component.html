@@ -1,9 +1,8 @@
 <div class="container">
   <h1>Please provide your login credentials</h1>
-  <form>
-    <label for="email">Email:</label>
-    <br>
-    <input type="text" id="email" name="email" [(ngModel)]="email">
+  <form [formGroup]="group" (ngSubmit)="logIn()">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" class="form-control w-50" id="email" formControlName="email" name="email">
     <br>
     <label for="password" class="form-label">Password:</label>
     <input type="password" class="form-control w-50" id="password" name="password" formControlName="password">

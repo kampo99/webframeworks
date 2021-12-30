@@ -15,7 +15,7 @@ export class SessionSbService {
 
 
   constructor(private httpClient: HttpClient) {
-    this.updateUserInfo();
+    this.getTokenFromBrowserStorage();
   }
 
 
@@ -40,9 +40,8 @@ export class SessionSbService {
 
       token = token.replace('Bearer ', '');
 
-      this.saveTokenIntoBrowserStorage(token, this.currentUser);
+      this.saveTokenIntoBrowserStorage(token, user);
 
-      this.updateUserInfo();
     },
       error => {
       console.log(error)
