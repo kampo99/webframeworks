@@ -1,6 +1,8 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SessionSbService} from "../service/session-sb.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +11,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 })
 export class SignInComponent implements OnInit, OnChanges {
 
-  constructor(private sessionsbService: SessionSbService, private route: ActivatedRoute, private router: Router) {
+  constructor(private sessionsbService: SessionSbService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['signOut'] == 'true'){
         sessionsbService.signOut();
@@ -18,8 +20,11 @@ export class SignInComponent implements OnInit, OnChanges {
     })
   }
 
-  email = '';
-  password = '';
+  group: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]]
+  });
+
   token = '';
   alert = false;
 
@@ -28,15 +33,20 @@ export class SignInComponent implements OnInit, OnChanges {
   }
 
   async logIn() {
-    await this.sessionsbService.asyncSignIn(this.email, this.password);
-    this.refresh();
-    console.log("word")
+    try {
+      await this.sessionsbService.asyncSignIn(this.group.controls['email'].value, this.group.controls['password'].value);
+      this.refresh();
+      console.log("word")
+    } catch (error){
+      this.alert = true;
+    }
+
   }
 
 
   refresh() {
     console.log("asd")
-    this.token = sessionStorage.getItem('token')
+    this.token = this.sessionsbService.getTokenFromBrowserStorage();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

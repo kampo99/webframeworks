@@ -5,16 +5,13 @@
     <br>
     <input type="text" id="email" name="email" [(ngModel)]="email">
     <br>
-    <label for="password">Password:</label>
+    <label for="password" class="form-label">Password:</label>
+    <input type="password" class="form-control w-50" id="password" name="password" formControlName="password">
     <br>
-    <input type="text" id="password" name="password" [(ngModel)]="password">
-    <br><br>
-    <h5 class="alert-danger alert" *ngIf="alert" >Could not authenticate with provided credentials</h5>
-    <button (click)="logIn()" class="btn btn-success" type="submit" value="Log in">Log in</button>
+    <button class="btn btn-success" type="submit" value="Log in" [disabled]="!group.valid">Log in</button>
   </form>
   <br>
   <h3>Current Token:</h3>
-
     <textarea class="w-100 " readonly >{{token}}</textarea>
   <button (click)="refresh()">refresh</button>
 </div>

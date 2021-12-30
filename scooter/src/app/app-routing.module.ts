@@ -22,10 +22,10 @@ const routes: Routes = [
       {path: '', pathMatch: 'full', redirectTo: 'O'},
       {path:':id', component: Detail34Component}
     ]},
-  {path: 'scooters/overview35', component:Overview35Component,
+  {path: 'scooters/overview35', component:Overview35Component, canActivate: [LoggedInGuard],
     children: [
       {path: '', pathMatch: 'full', redirectTo: 'O'},
-      {path:':id', component: Detail35Component}
+      {path:':id', component: Detail35Component, canActivate: [LoggedInGuard]}
     ]},
   {path: 'sign-up', component: UnknownRouteComponent},
   {path: 'sign-in', component: SignInComponent},

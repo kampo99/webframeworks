@@ -38,7 +38,7 @@ export class HeadersbComponent implements OnInit, OnChanges {
 
   loggedIn(){
     if (this.sessionsbService.getTokenFromBrowserStorage() != undefined){
-      this.name = JSON.parse(sessionStorage.getItem('user')).name;
+      this.name = this.sessionsbService.getUserFromBrowserStorage().name;
       return true;
     }
     return false;
