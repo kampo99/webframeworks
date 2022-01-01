@@ -39,12 +39,14 @@ public class JWTFilter extends OncePerRequestFilter {
                 return;
             }
 
+            //gets token from header and checks if it exist
             encodedToken = request.getHeader(HttpHeaders.AUTHORIZATION);
 
             if (encodedToken == null){
                 throw new AuthenticationException("Authentication problem");
             }
 
+            //removes bearer form the token
             encodedToken = encodedToken.replace("Bearer ", "");
 
             JWTokenInfo tokenInfo = tokenUtils.decode(encodedToken, false);

@@ -55,7 +55,7 @@ public class ScootersRepositoryJpa implements ScootersRepository{
 
     @Override
     public Scooter deleteById(long id) {
-        Scooter toRemove = em.merge(em.find(Scooter.class, id));
+        Scooter toRemove = this.findbyId(id);
         em.remove(toRemove);
         return toRemove;
     }

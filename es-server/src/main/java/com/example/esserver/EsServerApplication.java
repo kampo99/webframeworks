@@ -2,8 +2,10 @@ package com.example.esserver;
 
 import com.example.esserver.models.Scooter;
 import com.example.esserver.models.Trip;
+import com.example.esserver.models.User;
 import com.example.esserver.repositories.ScootersRepository;
 import com.example.esserver.repositories.TripsRepository;
+import com.example.esserver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -48,6 +50,8 @@ public class EsServerApplication implements CommandLineRunner {
     @Autowired
     private TripsRepository trepo;
 
+
+
     @Transactional
     @Override
     public void run(String... args) throws Exception {
@@ -72,7 +76,6 @@ public class EsServerApplication implements CommandLineRunner {
             }
         }
     }
-
 
 
 }

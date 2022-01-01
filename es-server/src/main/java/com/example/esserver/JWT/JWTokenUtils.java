@@ -90,18 +90,4 @@ public class JWTokenUtils {
 
         return tokenInfo;
     }
-
-    public boolean isRenewable(JWTokenInfo token){
-
-        if (token.getExpiration().compareTo(new Date()) > 0){
-            return false;
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(token.getIssuedAt());
-        calendar.add(Calendar.SECOND, refreshExpiration);
-
-        return calendar.getTime().compareTo(new Date()) > 0;
-
-    }
 }

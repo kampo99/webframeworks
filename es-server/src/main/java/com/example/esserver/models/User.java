@@ -1,11 +1,10 @@
 package com.example.esserver.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -13,6 +12,7 @@ public class User {
     @Id
     @GeneratedValue
     @JsonView(User.class)
+    @Column(name = "id")
     public long id;
     @JsonView(User.class)
     public String name;
@@ -22,6 +22,12 @@ public class User {
     public String role;
 
     public String hashedPassword;
+
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "user_id")
+    private SharedScooter sharedScooter;
+
 
     public User(long id, String name, String email, String hashedPassword, String role) {
         this.id = id;
@@ -72,5 +78,13 @@ public class User {
 
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
+    }
+
+    public SharedScooter getSharedScooter() {
+        return sharedScooter;
+    }
+
+    public void setSharedScooter(SharedScooter sharedScooter) {
+        this.sharedScooter = sharedScooter;
     }
 }
